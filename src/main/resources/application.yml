@@ -1,3 +1,24 @@
+server:
+  port: 8090
+
 spring:
   application:
     name: tms-task
+  datasource:
+    url: jdbc:postgresql://localhost:5432/task_db
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      schema: task_schema
+      connection-init-sql: create schema if not exists tms_schema
+      connection-timeout: 10000
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: tms_schema
+    liquibase-schema: tms_schema
+  jpa:
+    hibernate:
+      ddl-auto: none

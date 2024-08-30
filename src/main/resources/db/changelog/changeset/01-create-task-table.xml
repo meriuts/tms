@@ -1,0 +1,27 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="meriuts">
+        <sql>
+            CREATE TABLE IF NOT EXISTS tms_schema.t_tasks (
+            id SERIAL PRIMARY KEY,
+            task_title VARCHAR(100) NOT NULL,
+            task_description VARCHAR(500),
+            task_status VARCHAR(20) NOT NULL,
+            task_priority VARCHAR(20),
+            task_author BIGINT NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="meriuts">
+        <sql>
+            ALTER TABLE tms_schema.t_tasks ADD CONSTRAINT unique_task_title UNIQUE (task_title);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
+

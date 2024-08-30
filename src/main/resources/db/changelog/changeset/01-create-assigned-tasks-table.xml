@@ -1,0 +1,25 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="meriuts">
+        <sql>
+            CREATE TABLE IF NOT EXISTS tms_schema.t_assigned_tasks (
+            id SERIAL PRIMARY KEY,
+            user_id BIGINT NOT NULL,
+            task_id BIGINT NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="meriuts">
+        <sql>
+            CREATE UNIQUE INDEX idx_unique_user_task ON tms_schema.t_assigned_tasks (user_id, task_id);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
+
